@@ -1,7 +1,10 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Main {
+public class Main{
     public static void main(String[] args) {
         JFrame frame = new JFrame("Calculator");
         ImageIcon icon = new ImageIcon("D:\\Codes\\Java\\Swing\\Projects\\Caclulator\\resources\\icon.png");
@@ -11,13 +14,27 @@ public class Main {
         frame.setIconImage(icon.getImage());
 
         JPanel inputPanel = new JPanel();
-        //inputPanel.setBounds(0,0,350,300);
+        inputPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         inputPanel.setPreferredSize(new Dimension(350, 100));
         inputPanel.setBackground(new Color(0x909090));
+        inputPanel.setBorder(new EmptyBorder(5,5,5,5));
+
+        JTextField expressionText = new JTextField();
+        expressionText.setEditable(false);
+        expressionText.setPreferredSize(new Dimension(320,30));
+        expressionText.setHorizontalAlignment(JTextField.RIGHT);
+
+        JTextField inputText = new JTextField();
+        inputText.setPreferredSize(new Dimension(320, 45));
+        inputText.setEditable(false);
+        inputText.setHorizontalAlignment(JTextField.RIGHT);
+
+        inputPanel.add(expressionText);
+        inputPanel.add(inputText);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBounds(0,100,350,450);
-        buttonPanel.setPreferredSize(new Dimension(350, frame.getHeight()));
+        //buttonPanel.setPreferredSize(new Dimension(350, frame.getHeight()));
         buttonPanel.setBackground(new Color(0x909090));
         buttonPanel.setLayout(new GridLayout(4,4,2,2));
 
@@ -58,7 +75,77 @@ public class Main {
 
 
         frame.add(inputPanel,BorderLayout.NORTH);
-        frame.add(buttonPanel,BorderLayout.SOUTH);
+        frame.add(buttonPanel,BorderLayout.CENTER);
+
+
+        ActionListener actionListener = new ActionListener() {
+            StringBuilder currentInput = new StringBuilder();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String command = e.getActionCommand();
+
+                if(command.equals("0")){
+                    currentInput.append(command);
+                    System.out.println(command);
+                    inputText.setText(currentInput.toString());
+                } else if (command.equals("1")) {
+                    currentInput.append(command);
+                    System.out.println(command);
+                    inputText.setText(currentInput.toString());
+                }else if (command.equals("2")) {
+                    currentInput.append(command);
+                    System.out.println(command);
+                    inputText.setText(currentInput.toString());
+                }else if (command.equals("3")) {
+                    currentInput.append(command);
+                    System.out.println(command);
+                    inputText.setText(currentInput.toString());
+                }else if (command.equals("4")) {
+                    currentInput.append(command);
+                    System.out.println(command);
+                    inputText.setText(currentInput.toString());
+                }else if (command.equals("5")) {
+                    currentInput.append(command);
+                    System.out.println(command);
+                    inputText.setText(currentInput.toString());
+                }else if (command.equals("6")) {
+                    currentInput.append(command);
+                    System.out.println(command);
+                    inputText.setText(currentInput.toString());
+                }else if (command.equals("7")) {
+                    currentInput.append(command);
+                    System.out.println(command);
+                    inputText.setText(currentInput.toString());
+                }else if (command.equals("8")) {
+                    currentInput.append(command);
+                    System.out.println(command);
+                    inputText.setText(currentInput.toString());
+                }else if (command.equals("9")) {
+                    currentInput.append(command);
+                    System.out.println(command);
+                    inputText.setText(currentInput.toString());
+                }
+            }
+        };
+
+        btn0.addActionListener(actionListener);
+        btn1.addActionListener(actionListener);
+        btn2.addActionListener(actionListener);
+        btn3.addActionListener(actionListener);
+        btn4.addActionListener(actionListener);
+        btn5.addActionListener(actionListener);
+        btn6.addActionListener(actionListener);
+        btn7.addActionListener(actionListener);
+        btn8.addActionListener(actionListener);
+        btn9.addActionListener(actionListener);
+        btnAdd.addActionListener(actionListener);
+        btnSub.addActionListener(actionListener);
+        btnMult.addActionListener(actionListener);
+        btnDivide.addActionListener(actionListener);
+        btnEqual.addActionListener(actionListener);
+        btnClear.addActionListener(actionListener);
+
         frame.setVisible(true);
+
     }
 }
