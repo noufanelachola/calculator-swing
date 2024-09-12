@@ -124,6 +124,9 @@ public class Main{
                     currentInput.append(command);
                     System.out.println(command);
                     inputText.setText(currentInput.toString());
+                }else if (command.equals("Clear")){
+                    currentInput.setLength(0);
+                    inputText.setText(currentInput.toString());
                 }
             }
         };
