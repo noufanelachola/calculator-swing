@@ -3,6 +3,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class Main{
     public static void main(String[] args) {
@@ -80,6 +81,8 @@ public class Main{
 
         ActionListener actionListener = new ActionListener() {
             StringBuilder currentInput = new StringBuilder();
+            StringBuilder expressionInput = new StringBuilder();
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String command = e.getActionCommand();
@@ -127,9 +130,66 @@ public class Main{
                 }else if (command.equals("Clear")){
                     currentInput.setLength(0);
                     inputText.setText(currentInput.toString());
+                }else if (command.equals("+")){
+                    expressionInput.append(currentInput);
+                    expressionInput.append(" + ");
+                    currentInput.setLength(0);
+                    expressionText.setText(expressionInput.toString());
+                }else if (command.equals("-")){
+                    expressionInput.append(currentInput);
+                    expressionInput.append(" - ");
+                    currentInput.setLength(0);
+                    expressionText.setText(expressionInput.toString());
+                }else if (command.equals("*")){
+                    expressionInput.append(currentInput);
+                    expressionInput.append(" * ");
+                    currentInput.setLength(0);
+                    expressionText.setText(expressionInput.toString());
+                }else if (command.equals("/")){
+                    expressionInput.append(currentInput);
+                    expressionInput.append(" / ");
+                    currentInput.setLength(0);
+                    expressionText.setText(expressionInput.toString());
+                }else if (command.equals("=")){
+                    expressionInput.append(currentInput);
+                    currentInput.setLength(0);
+                    expressionText.setText(expressionInput.toString());
+                    String[] arrayOperations = expressionInput.toString().split(" ");
+                    System.out.println(Arrays.toString(arrayOperations));
+                    int length = arrayOperations.length;
+                    System.out.println(length);
+                    try{
+                        int result = Integer.parseInt(arrayOperations[0]);
+                        for(int i=1;i<length;i+=2){
+                            char operator = arrayOperations[i].charAt(0);
+                            System.out.println(operator);
+
+                            switch(operator){
+                                case '+':
+                                    result+=Integer.parseInt(arrayOperations[i+1]);
+                                    break;
+                                case '-':
+                                    result-=Integer.parseInt(arrayOperations[i+1]);
+                                    break;
+                                case '*':
+                                    result*=Integer.parseInt(arrayOperations[i+1]);
+                                    break;
+                                case '/':
+                                    result/=Integer.parseInt(arrayOperations[i+1]);
+                                    break;
+                            }
+                            inputText.setText(Integer.toString(result));
+
+
+                        }
+                    }catch(Exception err){
+                        System.out.println("Invalid operations");
+                    }
                 }
             }
         };
+
+
 
         btn0.addActionListener(actionListener);
         btn1.addActionListener(actionListener);
